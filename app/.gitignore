@@ -1,0 +1,7 @@
+/build
+
+androidTest/
+test/
+xml/
+wrapper/
+mipmap*
