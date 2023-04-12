@@ -1,9 +1,8 @@
 package com.b3lon9.app.controlmaster
 
-import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -20,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.bvm = BrightViewModel()
         binding.vvm = VolumeViewModel()
+
+        init()
     }
 
     override fun onStart() {
@@ -40,5 +41,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    private fun init() {
+        val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        layoutParams.width = (resources.displayMetrics.widthPixels * 0.8).toInt()
+        binding.root.layoutParams = layoutParams
     }
 }
