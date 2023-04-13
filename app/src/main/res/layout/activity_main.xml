@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="bvm" type="com.b3lon9.app.viewmodels.BrightViewModel" />
-        <variable name="vvm" type="com.b3lon9.app.viewmodels.VolumeViewModel" />
+        <variable name="bvm" type="com.b3lon9.app.controlmaster.viewmodels.BrightViewModel" />
+        <variable name="vvm" type="com.b3lon9.app.controlmaster.viewmodels.VolumeViewModel" />
     </data>
 
     <LinearLayout
@@ -48,6 +48,9 @@
                 android:id="@+id/bright_seekbar"
                 android:progressDrawable="@drawable/bright_progress"
                 android:thumb="@drawable/bright_thumb"
+                android:max="@{bvm.progressMaxLevel}"
+                android:min="@{bvm.progressMinLevel}"
+                android:progress="@{bvm.level}"
                 style="@style/common_seekbar_style" />
         </LinearLayout>
 
