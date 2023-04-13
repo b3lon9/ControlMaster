@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--bright button-->
+    <dimen name="bright_button_corner_normal">15dp</dimen>
+    <dimen name="bright_button_corner_selected">20dp</dimen>
+    <dimen name="bright_button_corner_pressed">14dp</dimen>
+
+    <!--seekbar-->
+    <dimen name="common_seekbar_height">33dp</dimen>
+    <dimen name="common_seekbar_margin_top">8dp</dimen>
+    <dimen name="common_seekbar_margin_bottom">13dp</dimen>
+
+    <dimen name="common_seekbar_progress_height">15dp</dimen>
+    <dimen name="common_seekbar_progress_radius">15dp</dimen>
+    <dimen name="common_seekbar_thumb_stroke">3dp</dimen>
+    <dimen name="common_seekbar_thumb_size">30dp</dimen>
+</resources>

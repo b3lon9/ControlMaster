@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <!--background-->
+        <shape>
+            <solid android:color="@color/beige_tone1" />
+            <size android:height="@dimen/common_seekbar_progress_height" />
+            <corners android:radius="@dimen/common_seekbar_progress_radius" />
+        </shape>
+    </item>
+
+    <item>
+        <!--progress-->
+        <clip>
+            <shape>
+                <solid android:color="@color/beige_tone3" />
+                <size android:height="@dimen/common_seekbar_progress_height" />
+                <corners android:radius="@dimen/common_seekbar_progress_radius" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

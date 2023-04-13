@@ -14,11 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
                     android:id="@+id/bright_button_min"
+                    android:text="@string/bright_button_min"
                     style="@style/bright_button_style"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -26,6 +28,7 @@
 
                 <Button
                     android:id="@+id/bright_button_auto"
+                    android:text="@string/bright_button_auto"
                     style="@style/bright_button_style"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintLeft_toRightOf="@id/bright_button_min"
@@ -33,6 +36,7 @@
 
                 <Button
                     android:id="@+id/bright_button_max"
+                    android:text="@string/bright_button_max"
                     style="@style/bright_button_style"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -41,8 +45,10 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatSeekBar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:id="@+id/bright_seekbar"
+                android:progressDrawable="@drawable/bright_progress"
+                android:thumb="@drawable/bright_thumb"
+                style="@style/common_seekbar_style" />
         </LinearLayout>
 
     </LinearLayout>
