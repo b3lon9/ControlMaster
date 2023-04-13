@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,4 +11,26 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>
+
+    <!--bright color-->
+    <color name="beige_tone1">#FDEEDC</color>
+    <color name="beige_tone2">#FFD8A9</color>
+    <color name="beige_tone3">#F1A661</color>
+    <color name="beige_tone4">#E38B29</color>
+    <color name="bright_background">#BBF0D587</color>
+
+    <!--volume color-->
+    <color name="turquoise_tone1">#EFEDE7</color>
+    <color name="turquoise_tone2">#7DCE94</color>
+    <color name="turquoise_tone3">#0E91A1</color>
+    <color name="turquoise_tone4">#146C78</color>
+    <color name="volume_background">#BB336371</color>
+
+
+    <!--icon color-->
+    <color name="icon_background">#4C4B16</color>
+    <color name="icon_toe_base">#F3F2C9</color>
+    <color name="icon_toe_first">#F0D587</color>
+    <color name="icon_toe_second">#336371</color>
+    <color name="icon_toe_third">#93AF56</color>
 </resources>

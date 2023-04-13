@@ -18,23 +18,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
+                    android:id="@+id/bright_button_min"
                     style="@style/bright_button_style"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/bright_button_auto" />
 
                 <Button
-                    android:theme="@style/bright_button_style"
-                    android:layout_width="@{bvm.width}"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/bright_button_auto"
+                    style="@style/bright_button_style"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"/>
+                    app:layout_constraintLeft_toRightOf="@id/bright_button_min"
+                    app:layout_constraintRight_toLeftOf="@id/bright_button_max"/>
 
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/bright_button_max"
+                    style="@style/bright_button_style"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/bright_button_auto"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
