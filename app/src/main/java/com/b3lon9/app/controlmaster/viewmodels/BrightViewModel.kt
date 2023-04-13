@@ -17,6 +17,8 @@ package com.b3lon9.app.controlmaster.viewmodels
 
 import android.content.Context
 import android.provider.Settings
+import android.view.View
+import android.widget.SeekBar
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -29,5 +31,21 @@ class BrightViewModel(private var context: Context) : ViewModel() {
 
     init {
         level.value = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1)
+    }
+
+    fun onClickMin(v:View) {
+
+    }
+
+    fun onClickAuto(v:View) {
+
+    }
+
+    fun onClickMax(v:View) {
+
+    }
+    
+    fun onProgressChanged(seekBar: SeekBar, i:Int, b:Boolean) {
+
     }
 }
