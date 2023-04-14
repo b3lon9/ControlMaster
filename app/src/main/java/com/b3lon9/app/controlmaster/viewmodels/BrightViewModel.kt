@@ -33,15 +33,15 @@ class BrightViewModel(private var context: Context) : ViewModel() {
         level.value = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1)
     }
 
-    fun onClickMin(v:View) {
+    fun onClickMin() {
 
     }
 
-    fun onClickAuto(v:View) {
+    fun onClickAuto() {
 
     }
 
-    fun onClickMax(v:View) {
+    fun onClickMax() {
 
     }
     

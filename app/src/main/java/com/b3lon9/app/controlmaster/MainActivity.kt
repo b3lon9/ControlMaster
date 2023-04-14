@@ -28,7 +28,6 @@ import com.b3lon9.app.controlmaster.viewmodels.VolumeViewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
