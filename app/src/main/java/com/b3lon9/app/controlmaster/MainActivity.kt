@@ -15,10 +15,8 @@ package com.b3lon9.app.controlmaster
  *   limitations under the License.
  */
 
-import android.os.Build
 import android.os.Bundle
 import android.widget.FrameLayout
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.b3lon9.app.controlmaster.databinding.ActivityMainBinding
