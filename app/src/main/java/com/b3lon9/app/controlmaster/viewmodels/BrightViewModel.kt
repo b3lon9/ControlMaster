@@ -34,7 +34,7 @@ class BrightViewModel(private var context: Context) : ViewModel() {
     }
 
     fun onClickMin() {
-
+        level.value = progressMinLevel
     }
 
     fun onClickAuto() {
@@ -46,6 +46,6 @@ class BrightViewModel(private var context: Context) : ViewModel() {
     }
     
     fun onProgressChanged(seekBar: SeekBar, i:Int, b:Boolean) {
-
+        println("...[neander]... onProgressChanged...!")
     }
 }

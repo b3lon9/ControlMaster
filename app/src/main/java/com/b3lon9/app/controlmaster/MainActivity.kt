@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
+
+        finishAffinity()
     }
 
     override fun onStop() {
