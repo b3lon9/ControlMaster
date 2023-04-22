@@ -5,3 +5,5 @@ test/
 xml/
 wrapper/
 mipmap*
+
+*.json
