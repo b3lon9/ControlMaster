@@ -1,4 +1,4 @@
-package com.b3lon9.app.controlmaster.models
+package com.b3lon9.controlmaster.viewmodels
 /*
  *   Copyright 2023 Neander
  *
@@ -15,7 +15,8 @@ package com.b3lon9.app.controlmaster.models
  *   limitations under the License.
  */
 
-data class VolumeModel(
-    val level:Int,
-    val save:Int    // mute
-)
+import androidx.lifecycle.ViewModel
+
+class VolumeViewModel : ViewModel() {
+
+}

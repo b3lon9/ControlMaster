@@ -1,4 +1,4 @@
-package com.b3lon9.app.controlmaster
+package com.b3lon9.controlmaster
 /*
  *   Copyright 2023 Neander
  *
@@ -19,9 +19,10 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.b3lon9.app.controlmaster.databinding.ActivityMainBinding
-import com.b3lon9.app.controlmaster.viewmodels.BrightViewModel
-import com.b3lon9.app.controlmaster.viewmodels.VolumeViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.b3lon9.controlmaster.databinding.ActivityMainBinding
+import com.b3lon9.controlmaster.viewmodels.BrightViewModel
+import com.b3lon9.controlmaster.viewmodels.VolumeViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding

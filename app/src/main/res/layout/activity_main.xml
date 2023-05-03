@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="bvm" type="com.b3lon9.app.controlmaster.viewmodels.BrightViewModel" />
-        <variable name="vvm" type="com.b3lon9.app.controlmaster.viewmodels.VolumeViewModel" />
+        <variable name="bvm" type="com.b3lon9.controlmaster.viewmodels.BrightViewModel" />
+        <variable name="vvm" type="com.b3lon9.controlmaster.viewmodels.VolumeViewModel" />
     </data>
 
     <LinearLayout

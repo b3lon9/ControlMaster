@@ -1,4 +1,4 @@
-package com.b3lon9.app.controlmaster.models
+package com.b3lon9.controlmaster.models
 /*
  *   Copyright 2023 Neander
  *
@@ -15,18 +15,7 @@ package com.b3lon9.app.controlmaster.models
  *   limitations under the License.
  */
 
-import androidx.databinding.Observable
-import androidx.databinding.Observable.OnPropertyChangedCallback
-
-class BrightModel : OnPropertyChangedCallback() {
-    var level:Int
-        get() = level
-        set(value) {
-            level = value
-        }
-
-    // MutableLiveData 즉각 반응하지 않을 경우 또는 모델 내부 데이터에서 변화가 필요한 경우 사용
-    override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-        TODO("Not yet implemented")
-    }
-}
+data class VolumeModel(
+    val level:Int,
+    val save:Int    // mute
+)
