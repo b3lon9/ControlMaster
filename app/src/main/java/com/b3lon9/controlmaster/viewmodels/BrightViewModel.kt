@@ -19,6 +19,7 @@ import android.content.Context
 import android.provider.Settings
 import android.view.View
 import android.widget.SeekBar
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,15 +29,14 @@ class BrightViewModel(private var context: Context) : ViewModel() {
     val progressMinLevel = 0
 
     /* data */
-    val level = MutableLiveData<Int>(0)
-
+    val level = ObservableInt(0)
 
     init {
-        //_level.value = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1)
+        level.set(Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1))
     }
 
     fun onClickMin() {
-        level.value = progressMinLevel
+        level.set(progressMinLevel)
     }
 
     fun onClickAuto() {
@@ -44,7 +44,7 @@ class BrightViewModel(private var context: Context) : ViewModel() {
     }
 
     fun onClickMax() {
-        level.value = progressMaxLevel
+        level.set(progressMaxLevel)
     }
     
     fun onProgressChanged(seekBar: SeekBar, i:Int, b:Boolean) {
