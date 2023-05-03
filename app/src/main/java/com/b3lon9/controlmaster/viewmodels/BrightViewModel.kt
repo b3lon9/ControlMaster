@@ -17,14 +17,12 @@ package com.b3lon9.controlmaster.viewmodels
 
 import android.content.Context
 import android.provider.Settings
-import android.view.View
 import android.widget.SeekBar
 import androidx.databinding.ObservableInt
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.b3lon9.controlmaster.`interface`.LevelListener
 
-class BrightViewModel(private var context: Context) : ViewModel() {
+class BrightViewModel(private var context: Context) : ViewModel(), LevelListener {
     val progressMaxLevel = 255
     val progressMinLevel = 0
 
@@ -32,11 +30,15 @@ class BrightViewModel(private var context: Context) : ViewModel() {
     val level = ObservableInt(0)
 
     init {
-        level.set(Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1))
+        updateLevel(Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1))
+        /*level.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+            }
+        })*/
     }
 
     fun onClickMin() {
-        level.set(progressMinLevel)
+        updateLevel(progressMinLevel)
     }
 
     fun onClickAuto() {
@@ -44,10 +46,16 @@ class BrightViewModel(private var context: Context) : ViewModel() {
     }
 
     fun onClickMax() {
-        level.set(progressMaxLevel)
+        updateLevel(progressMaxLevel)
     }
     
-    fun onProgressChanged(seekBar: SeekBar, i:Int, b:Boolean) {
-        println("...[neander]... onProgressChanged...!")
+    fun onProgressChanged(seekBar: SeekBar, level:Int, b:Boolean) {
+        // System
+        Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, level)
+    }
+
+    override fun updateLevel(level: Int) {
+        // ui
+        this.level.set(level)
     }
 }

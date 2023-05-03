@@ -15,7 +15,11 @@ package com.b3lon9.controlmaster
  *   limitations under the License.
  */
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -33,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         binding.bvm = BrightViewModel(this)
         binding.vvm = VolumeViewModel()
 
+        permission()
         init()
     }
 
@@ -62,5 +67,18 @@ class MainActivity : AppCompatActivity() {
         val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT)
         layoutParams.width = (resources.displayMetrics.widthPixels * 0.8).toInt()
         binding.root.layoutParams = layoutParams
+    }
+
+    private fun permission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.System.canWrite(this)) {
+                val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+                val packageName = "package:$packageName"
+
+                intent.data = Uri.parse(packageName)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
+        }
     }
 }
