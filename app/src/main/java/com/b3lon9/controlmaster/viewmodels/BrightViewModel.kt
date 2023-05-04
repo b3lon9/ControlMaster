@@ -18,16 +18,18 @@ package com.b3lon9.controlmaster.viewmodels
 import android.content.Context
 import android.provider.Settings
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import com.b3lon9.controlmaster.`interface`.LevelListener
+import kotlinx.coroutines.*
 
 class BrightViewModel(private var context: Context) : ViewModel(), LevelListener {
     val progressMaxLevel = 255
     val progressMinLevel = 0
 
     /* data */
-    val level = ObservableInt(0)
+    val level = ObservableInt()
 
     init {
         updateLevel(Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1))
@@ -41,9 +43,34 @@ class BrightViewModel(private var context: Context) : ViewModel(), LevelListener
         updateLevel(progressMinLevel)
     }
 
+    @DelicateCoroutinesApi
     fun onClickAuto() {
+        CoroutineScope(Dispatchers.Main).launch {
+            val result = autoModeSetting()
 
+            if (result.value) {
+                var count = 10
+                var systemBrightLevel = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
+
+                while (level.get() == systemBrightLevel && count >= 0) {
+                    delay(50)
+                    count--
+                    systemBrightLevel = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
+                }
+
+                // manual mode
+                Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL)
+                level.set(systemBrightLevel)
+            } else {
+                Toast.makeText(context, "다시 클릭해주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
+
+    private suspend fun autoModeSetting(): Lazy<Boolean> = lazy {
+        Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC)
+    }
+
 
     fun onClickMax() {
         updateLevel(progressMaxLevel)
