@@ -32,7 +32,7 @@ class BrightViewModel(private var context: Context) : ViewModel(), LevelListener
     val level = ObservableInt()
 
     init {
-        updateLevel(Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, -1))
+        updateLevel(Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS))
         /*level.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
             }

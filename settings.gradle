@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io'}
     }
 
 }
@@ -29,3 +30,4 @@ buildscript {
 
 rootProject.name = "ControlMaster"
 include ':app'
+include ':NLog'

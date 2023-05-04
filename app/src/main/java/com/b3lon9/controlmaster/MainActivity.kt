@@ -26,19 +26,23 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.b3lon9.controlmaster.databinding.ActivityMainBinding
 import com.b3lon9.controlmaster.viewmodels.BrightViewModel
+import com.b3lon9.controlmaster.viewmodels.HasParamViewModelFactory
 import com.b3lon9.controlmaster.viewmodels.VolumeViewModel
+import com.b3lon9.nlog.NLog
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        NLog.v("... onCreate")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.bvm = BrightViewModel(this)
-        binding.vvm = VolumeViewModel()
 
-        permission()
+        permissionCheck()
         init()
+
+        binding.bvm = ViewModelProvider(this, HasParamViewModelFactory(this))[BrightViewModel::class.java]
+        binding.vvm = VolumeViewModel()
     }
 
     override fun onStart() {
@@ -52,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
 
-        finishAffinity()
+        finish()
     }
 
     override fun onStop() {
@@ -69,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         binding.root.layoutParams = layoutParams
     }
 
-    private fun permission() {
+    private fun permissionCheck() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.System.canWrite(this)) {
                 val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
