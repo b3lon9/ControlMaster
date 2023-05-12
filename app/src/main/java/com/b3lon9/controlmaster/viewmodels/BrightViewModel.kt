@@ -15,6 +15,7 @@ package com.b3lon9.controlmaster.viewmodels
  *   limitations under the License.
  */
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.provider.Settings
 import android.widget.SeekBar
@@ -23,7 +24,7 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import com.b3lon9.controlmaster.`interface`.LevelListener
 import kotlinx.coroutines.*
-
+@SuppressLint("StaticFieldLeak")
 class BrightViewModel(private var context: Context) : ViewModel(), LevelListener {
     val progressMaxLevel = 255
     val progressMinLevel = 0

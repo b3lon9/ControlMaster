@@ -35,13 +35,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        NLog.v("... onCreate")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         permissionCheck()
         init()
 
-        binding.bvm = ViewModelProvider(this, HasParamViewModelFactory(this))[BrightViewModel::class.java]
+        binding.bvm = BrightViewModel(this)
         binding.vvm = VolumeViewModel()
     }
 
