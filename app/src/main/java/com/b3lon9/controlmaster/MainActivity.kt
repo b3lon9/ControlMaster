@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         permissionCheck()
         init()
 
-        binding.bvm = BrightViewModel(this)
+        binding.bvm = BrightViewModel(this, binding.brightSeekbar)
         binding.vvm = VolumeViewModel()
     }
 

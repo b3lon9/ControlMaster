@@ -15,6 +15,7 @@ package com.b3lon9.controlmaster.viewmodels
  *   limitations under the License.
  */
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.provider.Settings
@@ -24,39 +25,50 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import com.b3lon9.controlmaster.`interface`.LevelListener
 import kotlinx.coroutines.*
+import kotlin.math.abs
+
 @SuppressLint("StaticFieldLeak")
-class BrightViewModel(private var context: Context) : ViewModel(), LevelListener {
+class BrightViewModel(private val context: Context,val seekBar:SeekBar) : ViewModel(), LevelListener {
     val progressMaxLevel = 255
     val progressMinLevel = 0
 
     /* data */
     val level = ObservableInt()
 
+    private var objectAnimator = ObjectAnimator()
+
     init {
-        updateLevel(Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS))
+        updateLevel(currentBrightLevel())
         /*level.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
             }
         })*/
     }
 
-    fun onClickMin() {
-        updateLevel(progressMinLevel)
+    fun onClickAnimate(level:Int) {
+        // updateLevel(level)
+        objectAnimator = ObjectAnimator.ofInt(seekBar, "progress", level)
+        objectAnimator.apply {
+            duration = abs((currentBrightLevel() - level) * 5L)
+            objectAnimator.start()
+        }
     }
 
     @DelicateCoroutinesApi
     fun onClickAuto() {
+        if (objectAnimator.isRunning) objectAnimator.cancel()
+
         CoroutineScope(Dispatchers.Main).launch {
             val result = autoModeSetting()
 
             if (result.value) {
                 var count = 10
-                var systemBrightLevel = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
+                var systemBrightLevel = currentBrightLevel()
 
                 while (level.get() == systemBrightLevel && count >= 0) {
                     delay(50)
                     count--
-                    systemBrightLevel = Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
+                    systemBrightLevel = currentBrightLevel()
                 }
 
                 // manual mode
@@ -72,11 +84,11 @@ class BrightViewModel(private var context: Context) : ViewModel(), LevelListener
         Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC)
     }
 
-
-    fun onClickMax() {
-        updateLevel(progressMaxLevel)
+    private fun currentBrightLevel():Int {
+        return Settings.System.getInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS)
     }
-    
+
+
     fun onProgressChanged(seekBar: SeekBar, level:Int, b:Boolean) {
         // System
         Settings.System.putInt(context.contentResolver, Settings.System.SCREEN_BRIGHTNESS, level)
