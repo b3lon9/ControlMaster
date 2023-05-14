@@ -28,7 +28,7 @@ import kotlinx.coroutines.*
 import kotlin.math.abs
 
 @SuppressLint("StaticFieldLeak")
-class BrightViewModel(private val context: Context,val seekBar:SeekBar) : ViewModel(), LevelListener {
+class BrightViewModel(private val context: Context, private val seekBar:SeekBar) : ViewModel(), LevelListener {
     val progressMaxLevel = 255
     val progressMinLevel = 0
 

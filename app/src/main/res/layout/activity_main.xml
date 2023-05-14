@@ -18,14 +18,22 @@
 -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <variable name="bvm" type="com.b3lon9.controlmaster.viewmodels.BrightViewModel" />
-        <variable name="vvm" type="com.b3lon9.controlmaster.viewmodels.VolumeViewModel" />
+
+        <variable
+            name="bvm"
+            type="com.b3lon9.controlmaster.viewmodels.BrightViewModel" />
+
+        <variable
+            name="vvm"
+            type="com.b3lon9.controlmaster.viewmodels.VolumeViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,44 +43,86 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <Button
                     android:id="@+id/bright_button_min"
-                    android:text="@string/bright_button_min"
-                    android:onClick="@{() -> bvm.onClickAnimate(bvm.progressMinLevel)}"
                     style="@style/bright_button_style"
+                    android:onClick="@{() -> bvm.onClickAnimate(bvm.progressMinLevel)}"
+                    android:text="@string/bright_button_min"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/bright_button_auto" />
+                    app:layout_constraintRight_toLeftOf="@id/bright_button_auto"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/bright_button_auto"
-                    android:text="@string/bright_button_auto"
-                    android:onClick="@{() -> bvm.onClickAuto()}"
                     style="@style/bright_button_style"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:onClick="@{() -> bvm.onClickAuto()}"
+                    android:text="@string/bright_button_auto"
                     app:layout_constraintLeft_toRightOf="@id/bright_button_min"
-                    app:layout_constraintRight_toLeftOf="@id/bright_button_max"/>
+                    app:layout_constraintRight_toLeftOf="@id/bright_button_max"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/bright_button_max"
-                    android:text="@string/bright_button_max"
-                    android:onClick="@{() -> bvm.onClickAnimate(bvm.progressMaxLevel)}"
                     style="@style/bright_button_style"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:onClick="@{() -> bvm.onClickAnimate(bvm.progressMaxLevel)}"
+                    android:text="@string/bright_button_max"
+                    app:layout_constraintLeft_toRightOf="@id/bright_button_auto"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/bright_button_auto"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/bright_seekbar"
-                android:progressDrawable="@drawable/bright_progress"
-                android:thumb="@drawable/bright_thumb"
+                style="@style/common_seekbar_style"
                 android:max="@{bvm.progressMaxLevel}"
                 android:min="@{bvm.progressMinLevel}"
-                android:progress="@={bvm.level}"
                 android:onProgressChanged="@{bvm::onProgressChanged}"
-                style="@style/common_seekbar_style" />
+                android:progress="@={bvm.level}"
+                android:progressDrawable="@drawable/bright_progress"
+                android:thumb="@drawable/bright_thumb" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/volume_button_min"
+                    style="@style/volume_button_style"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/volume_button_mute"/>
+
+                <ImageButton
+                    android:id="@+id/volume_button_mute"
+                    style="@style/volume_button_style"
+                    android:layout_height="0dp"
+                    android:src="@drawable/volume_mute_selector"
+                    app:layout_constraintLeft_toRightOf="@id/volume_button_min"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/volume_button_max"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <Button
+                    android:id="@+id/volume_button_max"
+                    style="@style/volume_button_style"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/volume_button_mute" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/volume_seekbar"
+                style="@style/common_seekbar_style"
+                android:progressDrawable="@drawable/volume_progress"
+                android:thumb="@drawable/volume_thumb"/>
         </LinearLayout>
 
     </LinearLayout>

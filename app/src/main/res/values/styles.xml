@@ -20,9 +20,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="NewApi">
 
-    <!--bright-->
-    <style name="bright_button_style">
-        <item name="android:background">@drawable/bright_button_selector</item>
+    <style name="button_style">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">5dp</item>
@@ -30,6 +28,16 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!--bright-->
+    <style name="bright_button_style" parent="button_style">
+        <item name="android:background">@drawable/bright_button_selector</item>
+    </style>
+
+    <!--volume-->
+    <style name="volume_button_style" parent="button_style">
+        <item name="android:background">@drawable/volume_button_selector</item>
     </style>
 
     <!--seekbar-->
